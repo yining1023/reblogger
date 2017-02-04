@@ -1,0 +1,54 @@
+{
+  "name": "Reblogger",
+  "version": "1.0.0",
+  "description": "App to receive submissions from students and reblog them",
+  "main": "index.js",
+  "scripts": {
+    "eslint": "eslint \"./**/*.js\"",
+    "lint": "npm run lint",
+    "start:dev": "nodemon --watch views --watch src --watch public -e js,twig,html,css server.js",
+    "start:dep": "ENV=deployment node server.js",
+    "start": "npm run start:dev",
+    "test": "mocha --compilers js:babel-core/register",
+    "todo": "leasot ./src/**/*.js server.js --tags error,info || true"
+  },
+  "dependencies": {
+    "express": "^4.14.1",
+    "gulp-messenger": "0.25.3",
+    "lodash": "^4.17.4",
+    "twig": "0.10.1"
+  },
+  "engines": {
+    "node": "6.3.0"
+  },
+  "keywords": [
+    "node",
+    "heroku",
+    "express"
+  ],
+  "babel": {
+    "presets": [
+      "es2015",
+      "stage-0"
+    ],
+    "ignore": [
+      "node_modules"
+    ]
+  },
+  "author": "Yining Shi <yining@nyu.edu>",
+  "license": "MIT",
+  "devDependencies": {
+    "babel-core": "6.18.2",
+    "babel-preset-es2015": "6.18.0",
+    "chai": "3.5.0",
+    "eslint": "3.10.2",
+    "leasot": "4.2.0",
+    "mocha": "3.1.2",
+    "nodemon": "1.11.0",
+    "todo-webpack-plugin": "1.5.1"
+  },
+  "directories": {
+    "test": "test"
+  },
+  "reveal": true
+}
