@@ -1,22 +1,25 @@
 {
   "name": "Reblogger",
+  "author": "Yining Shi <yining@nyu.edu>",
   "version": "1.0.0",
   "description": "App to receive submissions from students and reblog them",
   "main": "index.js",
   "scripts": {
     "eslint": "eslint \"./**/*.js\"",
     "lint": "npm run lint",
-    "start:dev": "nodemon --watch views --watch src --watch public -e js,twig,html,css server.js",
+    "start:dev": "nodemon --watch views --watch src --watch public -e js,pug,html,css server.js",
     "start:dep": "ENV=deployment node server.js",
     "start": "npm run start:dev",
     "test": "mocha --compilers js:babel-core/register",
     "todo": "leasot ./src/**/*.js server.js --tags error,info || true"
   },
   "dependencies": {
+    "body-parser": "^1.16.0",
     "express": "^4.14.1",
+    "express-session": "^1.15.0",
     "gulp-messenger": "0.25.3",
     "lodash": "^4.17.4",
-    "twig": "0.10.1"
+    "pug": "^2.0.0-beta11"
   },
   "engines": {
     "node": "6.3.0"
@@ -35,7 +38,6 @@
       "node_modules"
     ]
   },
-  "author": "Yining Shi <yining@nyu.edu>",
   "license": "MIT",
   "devDependencies": {
     "babel-core": "6.18.2",

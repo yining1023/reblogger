@@ -1,0 +1,9 @@
+extends layout.pug
+
+block content
+  form(method='post', action='/reblog-post')
+    input(type='text', name='url', placeholder='Link to your post')
+    br
+    input(type='submit', value='Submit')
+  div
+    | #{ status }
