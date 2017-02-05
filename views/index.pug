@@ -2,8 +2,24 @@ extends layout.pug
 
 block content
   form(method='post', action='/reblog-post')
-    input(type='text', name='url', placeholder='Link to your post')
+    input(class='input-box input-url', type='text', name='url', placeholder='Paste the link to your Tumblr post')
     br
-    input(type='submit', value='Submit')
-  div
-    | #{ status }
+    input(class='btn green-blue-gradient', type='submit', value='REBLOG')
+  if reblogged
+    .success.info
+      p.header Your post has been Reblogged!
+      p
+        a(href='https://100daysitp2017.tumblr.com/') &nbsp;Check it out!
+      p.small Please avoid submitting duplicate links. Thank you!
+  else if error
+    .failure.info
+      p.header Error
+      p Please make sure the url you have entered is a valid Tumblr post
+      p #{ error.message }
+      p.small
+        | If this persists, please&nbsp;
+        a(href='https://github.com/yining1023/reblogger/issues') file an issue
+        | &nbsp;on Github
+
+
+

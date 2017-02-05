@@ -1,5 +1,8 @@
 'use strict'
 
+// useful for fetching secrets from .env file and adding them to process.env
+require('dotenv').config()
+
 const express = require('express')
 const session = require('express-session')
 const bodyParser = require('body-parser')
@@ -7,9 +10,11 @@ const msg = require('gulp-messenger')
 const chalk = require('chalk')
 const _ = require('lodash')
 
+const { reblogPost } = require('./tumblrUtils.js')
+
 const app = express()
 
-const sess = session({
+const _session = session({
   isAuthenticated: false,
   secret: 'dragon',
   resave: false,
@@ -23,7 +28,7 @@ const sess = session({
 app.set('view engine', 'pug')
 app.set('port', (process.env.PORT || 3000))
 
-app.use(sess)
+app.use(_session)
 app.use(express.static(__dirname + '/public'))  // static directory
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
@@ -32,8 +37,7 @@ const requireLogin = (req, res, next) => {
   if (req.session.isAuthenticated) {
     next() // allow the next route to run
   } else {
-    // require the user to log in
-    res.redirect('/login'); // or render a form, etc.
+    res.redirect('/login')
   }
 }
 
@@ -42,26 +46,34 @@ app.get('/login', (req, res) => {
 })
 
 app.post('/login', (req, res) => {
-  if (req.body.password === 'asd') {
+  if (req.body.password === process.env.LOGIN_PASSWORD) {
     req.session.isAuthenticated = true
     res.redirect('/')
   } else {
     req.session.isAuthenticated = false
-    res.status(403).send('Unauthorized!')
+    res.render('login.pug', {
+      status: 'Password is Incorrect!',
+    })
   }
 })
 
+// Password protected routes
 app.use('/', requireLogin)
+app.use('/reblog-post', requireLogin)
+
 app.get('/', (req, res) => {
-  res.render('index.pug', {
-    status: '',
-  });
+  res.render('index.pug');
 });
 
-app.use('/reblog-post', requireLogin)
 app.post('/reblog-post', (req, res) => {
-  res.render('index.pug', {
-    status: _.sample(['reblogged!', 'failed!']),
+  reblogPost(req.body.url).then(() => {
+    res.render('index.pug', {
+      reblogged: true,
+    })
+  }).catch(err => {
+    res.render('index.pug', {
+      error: err,
+    })
   })
 })
 
