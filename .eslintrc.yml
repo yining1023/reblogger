@@ -66,7 +66,7 @@ rules:
   ##### Stylistic Issues #####
   array-bracket-spacing: 1 # fixable
   block-spacing: 1 # fixable
-  brace-style: [1, 'stroustrup', {allowSingleLine: true}]
+  brace-style: [1, '1tbs']
   func-style: [1, 'declaration', {allowArrowFunctions: true}]
   # indent: [1, 'tab', {SwitchCase: 0}] # fixable
   indent: 0 # fixable
@@ -76,7 +76,7 @@ rules:
   no-mixed-spaces-and-tabs: 2
   no-spaced-func: 1 # fixable
   no-unneeded-ternary: [2, {defaultAssignment: false}]
-  object-curly-spacing: 1 # fixable
+  object-curly-spacing: 0 # fixable
   one-var-declaration-per-line: 1
   # operator-linebreak: [1, 'before', {overrides: {'=': 'after'}}]
   operator-linebreak: 0
