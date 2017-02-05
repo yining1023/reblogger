@@ -21,7 +21,15 @@
     "gulp-messenger": "0.25.3",
     "lodash": "^4.17.4",
     "pug": "^2.0.0-beta11",
-    "tumblr.js": "^1.1.1"
+    "tumblr.js": "^1.1.1",
+    "babel-core": "6.18.2",
+    "babel-preset-es2015": "6.18.0",
+    "chai": "3.5.0",
+    "eslint": "3.10.2",
+    "leasot": "4.2.0",
+    "mocha": "3.1.2",
+    "nodemon": "1.11.0",
+    "todo-webpack-plugin": "1.5.1"
   },
   "engines": {
     "node": "6.3.0"
@@ -41,16 +49,6 @@
     ]
   },
   "license": "MIT",
-  "devDependencies": {
-    "babel-core": "6.18.2",
-    "babel-preset-es2015": "6.18.0",
-    "chai": "3.5.0",
-    "eslint": "3.10.2",
-    "leasot": "4.2.0",
-    "mocha": "3.1.2",
-    "nodemon": "1.11.0",
-    "todo-webpack-plugin": "1.5.1"
-  },
   "directories": {
     "test": "test"
   },
